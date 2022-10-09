@@ -66,10 +66,10 @@ class Git(object):
             # https://stackoverflow.com/a/12010656
             cmd = (
                 "stash=`git stash create`; git archive --format tar $stash |"
-                " tar -x -C {outdir}/".format(outdir=outdir)
+                ' tar -x -C "{outdir}/"'.format(outdir=outdir)
             )
         else:
-            cmd = "git archive --format tar {vers} | tar -x -C {outdir}/".format(
+            cmd = 'git archive --format tar {vers} | tar -x -C "{outdir}/"'.format(
                 vers=version, outdir=outdir
             )
         return call_shell(cmd)
@@ -88,3 +88,4 @@ class Git(object):
             return max(modtimes)
         else:
             return int(call_shell("git log -1 -s --format=%ct {}".format(version)))
+
